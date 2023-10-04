@@ -1,6 +1,6 @@
 const redis = require('redis');
 const { promisify } = require('util');
-//class to create a client to redis
+// class to create a client to redis
 class RedisClient {
   constructor() {
     this.client = redis.createClient();
@@ -11,18 +11,18 @@ class RedisClient {
     });
   }
 
-  //connection to redis validator
+  // connection to redis validator
   isAlive() {
     return this.client.connected;
   }
-  
+
   // getter
   async get(key) {
     const value = await this.getAsync(key);
     return value;
   }
 
-  //setter
+  // setter
   async set(key, value, duration) {
     this.client.set(key, value);
     this.client.expire(key, duration);
